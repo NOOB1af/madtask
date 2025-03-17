@@ -58,9 +58,9 @@ export default {
         },
       ],
       statusColors: {
-        online: "bg-green-500",
-        offline: "bg-red-500",
-        away: "bg-yellow-500",
+        online:"bg-green-500",
+        offline:"bg-red-500",
+        away:"bg-yellow-500",
       },
     };
   },
@@ -76,7 +76,7 @@ export default {
 
 <template>
   <div class=" sidebar chat-sidebar">
-    <div class="d-md-block bg-white profile ms-1 mt-3">
+    <div class="d-block bg-white profile ms-1 mt-3">
       <div class="profile-info">
           <img :src="u0" class="u " height="45" width="45">
           <div class="user">
@@ -111,18 +111,17 @@ export default {
         :key="index" 
         class="chat-item p"
       >
-        <div class="avatar-wrapper">
-          <img
-            :src="chat.avatar"
-            :alt="chat.name"
-            class=" avatar"
-          />
-          <span
-            style="width: 8px; height: 8px;"
-            class="ms-1 mt-5 rounded"
-            :class="statusColors[chat.status]"
-          ></span>
-        </div>
+      <div class="avatar-wrapper">
+  <img
+    :src="chat.avatar"
+    :alt="chat.name"
+    class="avatar"
+  />
+  <span
+    class="status-dot"
+    :class="statusColors[chat.status]"
+  ></span>
+</div>
         <div class="chat-info">
         <div class="chat-header">
            <h4>{{ chat.name }}</h4>
@@ -142,6 +141,7 @@ export default {
   cursor: pointer;
 }
 .ser{
+  outline: none;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -182,9 +182,7 @@ export default {
 .profile {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-right: 1px solid #ddd;
-  height: 636px;
+  height: max-content;
 }
 .profile-info {
   display: flex;
@@ -216,9 +214,9 @@ export default {
   margin: 3px;
 }
 .chat-list {
-  width: auto;
+  width: max-content;
   border:none;
-  overflow: hidden;
+
   background: #fff;
 } 
 .chat-item {
@@ -233,8 +231,18 @@ export default {
   background-color: #e0f7fa;
 }
 .avatar-wrapper {
-  position: relative;
-  margin-right: 12px;
+  position: relative; /* Needed for absolute positioning of status dot */
+  display: inline-block;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.678); /* Makes the dot look cleaner */
 }
 .chat-item:last-child {
   border-bottom: none;
@@ -268,9 +276,9 @@ export default {
 }
 .chat-sidebar {
   width: max-content;
-  height: auto;
-  background: #ffffff;
-  padding: 20px;
+  max-height: max-content;
+
+  padding-left: 5px;
   border-radius: 10px 0 0 10px;
   font-family: Arial, sans-serif; 
 }

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-   <div class="container ">
+   <div class="container px-0">
         <div class="chat-bar">
             <h5 class="mb-0">Chat</h5>
             <nav>

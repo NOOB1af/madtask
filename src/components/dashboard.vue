@@ -1,6 +1,21 @@
 <script setup>
 import logo from '@/assets/logo.png';
 </script>
+<script>
+export default {
+    data() {
+        return {
+            showPermissions: false
+        };
+    },
+    methods: {
+        togglePermissions() {
+            this.showPermissions = !this.showPermissions;
+        }
+    }
+};
+</script>
+
 
 <template>
     <div class="container-fluid mw"> 
@@ -8,8 +23,6 @@ import logo from '@/assets/logo.png';
                 <div class="raw d-flex px-4">
                 <img :src="logo" class=" object-fit-scale logo" alt="...">
                 <h6 class="mt-5">Hi TEAM</h6>
-
-
             </div>
                 <ul class="nav flex-column px-4 mt-4 ">
                     <li class="nav-item ic p-2"><i class=" bi bi-house"></i>  Dashboard</li>
@@ -23,7 +36,16 @@ import logo from '@/assets/logo.png';
                     <li class="nav-item ic p-2"><i class=" bi bi-chat-left-text"></i>  Contact</li>
                     <li class="nav-item ic p-2"><i class=" bi bi-stars"></i>  Reviews</li>
                     <hr></hr>
-                    <li class="nav-item ic p-2"><i class="bi bi-shield"></i>  Permissions</li>
+                    <li class="nav-item ic p-2 dropdown" @click="togglePermissions">
+                        <i class="bi bi-shield"></i>  Permissions
+                        <i class="bi bi-chevron-down ms-4"></i>
+                    </li>
+                    <ul v-show="showPermissions" class="submenu">
+                        <li class="nav-item p-2 ic"><i class="bi bi-person"></i>Users</li>
+                        <li class="nav-item p-2 ic"><i class="bi bi-key"></i>Roles</li>
+                        <li class="nav-item p-2 ic"><i class="bi bi-lock"></i>Access</li>
+                    </ul>
+
                     <li class="nav-item ic p-2"><i class="bi bi-translate"></i>  Translation</li>
                     <li class="nav-item ic p-2"><i class="bi bi-film"></i>  Education Video</li>
                     <li class="nav-item ic p-2"><i class="bi bi-gear"></i>  Settings</li>
